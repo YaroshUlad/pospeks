@@ -1,0 +1,30 @@
+:root {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+*{
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}

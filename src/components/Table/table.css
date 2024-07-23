@@ -1,0 +1,31 @@
+.Scrollable {
+  width: calc(100%);
+}
+
+.Scrollable tr td:last-child {
+  /*margin-right: 16px;*/
+}
+
+.Scrollable::-webkit-scrollbar {
+  width: 16px;
+  height: 5px;
+}
+
+.Scrollable::-webkit-scrollbar-track {
+  background-color: rgba(255, 0, 0, 0.2);
+  /*border-radius: 10px;*/
+}
+
+.Scrollable::-webkit-scrollbar-track:hover {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+.Scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 149, 237, 0.2);
+  border-radius: 10px;
+}
+
+.Scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 149, 237, .6);
+}
+
