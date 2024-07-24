@@ -1,7 +1,7 @@
 export interface DeformationModelData {
   value: number
   isValid: boolean
-  delta: number
+  delta?: number
 }
 
 export interface DeformationModel {

@@ -6,6 +6,9 @@
 a {
   text-decoration: none;
 }
+.cursor:hover {
+  cursor: pointer;
+}
 
 a:hover {
 }
