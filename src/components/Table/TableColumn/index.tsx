@@ -10,7 +10,6 @@ export interface TableColumnProps<T> {
   onSortChange?: (isAsc: boolean | null) => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TableColumn = <T = unknown,>(_: TableColumnProps<T>) => null
 
 TableColumn.displayName = 'Column'

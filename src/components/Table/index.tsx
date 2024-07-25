@@ -18,6 +18,7 @@ import TableColumnGroup from '@/components/Table/TableColumnGroup'
 import type { TableColumnGroupProps } from '@/components/Table/TableColumnGroup'
 import type { TableColumnProps } from '@/components/Table/TableColumn'
 import { sortCompareFunction } from '@/core/sort.ts'
+import Loader from '@/components/Loader'
 
 interface CustomTableProps<T> {
   width?: CSSProperties['width']
@@ -29,6 +30,8 @@ interface CustomTableProps<T> {
 
   caption?: string
   captionSide?: CSSProperties['captionSide']
+
+  loading?: boolean
 }
 
 const Table = <T,>({
@@ -38,6 +41,7 @@ const Table = <T,>({
   dataSource,
   caption,
   captionSide,
+  loading,
 }: CustomTableProps<T>) => {
   const [sort, setSort] = useState<{ dataKey: string; value: 'asc' | 'desc' | null } | null>(null)
 
@@ -173,14 +177,14 @@ const Table = <T,>({
             >
               {columnTitle}
               {sortable && (
-                <div
-                  className={'cursor'}
+                <button
+                  className={'btn btn-primary btn-sm mx-2'}
                   onClick={() => {
                     handleSetSort(dataKey)
                   }}
                 >
                   {getSortIcon(dataKey)}
-                </div>
+                </button>
               )}
             </th>
           )
@@ -264,7 +268,7 @@ const Table = <T,>({
         th.style.left = `${th.offsetLeft}px`
       })
     })
-  }, [])
+  }, [dataSource])
 
   return (
     <div
@@ -273,14 +277,20 @@ const Table = <T,>({
         ['h-100']: !height,
       })}
     >
+      {loading && (
+        <Loader>
+          <Loader.Spinner />
+        </Loader>
+      )}
       <BSTable
         ref={tableRef}
-        bordered
         hover
         striped
-        variant={'dark'}
+        bordered
+        border={1}
         className={'mb-0'}
-        style={{ tableLayout: 'fixed' }}
+        style={{ tableLayout: 'fixed', borderCollapse: 'separate', borderSpacing: 0 }}
+        variant={'primary'}
       >
         {caption && <caption style={{ captionSide }}>{caption}</caption>}
         {colgroup}
@@ -290,11 +300,7 @@ const Table = <T,>({
             return (
               <tr key={sourceIndex}>
                 {columns.map(({ props }, index) => {
-                  const css: CSSProperties = {
-                    // position: props.sticky ? 'sticky' : undefined,
-                    // left: 0,
-                    overflow: 'hidden',
-                  }
+                  const css: CSSProperties = { overflow: 'hidden' }
                   return (
                     <td key={index} style={css} className={props.sticky ? 'sticky-td' : undefined}>
                       {columns[index].props.render?.(el)}

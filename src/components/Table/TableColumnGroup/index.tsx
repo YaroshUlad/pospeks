@@ -6,7 +6,6 @@ export interface TableColumnGroupProps<T> {
   children: ReactElement<TableColumnProps<T>>[]
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TableColumnGroup = <T = unknown,>(_: TableColumnGroupProps<T>) => {
   return null
 }

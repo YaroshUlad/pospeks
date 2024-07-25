@@ -5,10 +5,11 @@ import Table from '@/components/Table'
 import { TermoModel } from '@/models/termo.model.ts'
 
 interface TermoTableProps {
-  dataSource: TermoModel[]
+  dataSource?: TermoModel[]
+  loading?: boolean
 }
 
-const TermoTable: FC<TermoTableProps> = ({ dataSource }) => {
+const TermoTable: FC<TermoTableProps> = ({ dataSource, loading }) => {
   const depths = useMemo(() => {
     const result = []
 
@@ -20,7 +21,7 @@ const TermoTable: FC<TermoTableProps> = ({ dataSource }) => {
   }, [])
 
   return (
-    <Table<TermoModel> dataSource={dataSource}>
+    <Table<TermoModel> dataSource={dataSource} loading={loading}>
       <Table.Column<TermoModel>
         dataKey={'time'}
         title={'Дата и время измерения'}
@@ -44,7 +45,7 @@ const TermoTable: FC<TermoTableProps> = ({ dataSource }) => {
             <Table.Column<TermoModel>
               dataKey={`${depth}`}
               key={index}
-              width={'50px'}
+              width={'60px'}
               title={`${depth}`}
               render={(record) => record.data[depth]?.value || ''}
             />

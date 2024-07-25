@@ -5,12 +5,13 @@ import Table from '@/components/Table'
 import { DeformationModel } from '@/models/deformation.model.ts'
 
 interface DeformationTableProps {
-  dataSource: DeformationModel[]
+  dataSource?: DeformationModel[]
+  loading?: boolean
 }
 
-const DeformationTable: FC<DeformationTableProps> = ({ dataSource }) => {
+const DeformationTable: FC<DeformationTableProps> = ({ dataSource, loading }) => {
   return (
-    <Table<DeformationModel> dataSource={dataSource}>
+    <Table<DeformationModel> dataSource={dataSource} loading={loading}>
       <Table.Column<DeformationModel>
         dataKey={'time'}
         title={'Дата и время измерения'}
@@ -23,7 +24,6 @@ const DeformationTable: FC<DeformationTableProps> = ({ dataSource }) => {
         dataKey={'loop'}
         title={'Цикл измерения'}
         width={'350px'}
-        sortable
         render={() => Math.ceil(Math.random() * 4)}
       />
       <Table.Column<DeformationModel>

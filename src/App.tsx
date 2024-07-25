@@ -1,21 +1,24 @@
-import { mackData, mockThermo } from '@/mock.ts'
-
-import TermoTable from '@/modules/termo/components/TermoTable'
-import DeformationTable from '@/modules/deformation/components/DeformationTable'
-import { useEffect } from 'react'
-import api from '@/core/api/api.ts'
+import FetchAndRenderDeformationData from '@/modules/deformation/components/FetchAndRenderDeformationData'
+import FetchAndRenderTermoData from '@/modules/termo/components/FetchAndRenderTermoData'
+import DateFilter from '@/modules/dateFilter/components/DatePicker'
 
 function App() {
-  useEffect(() => {
-    api.services.deformation.fetchDeformations().then((res) => console.log(res.data.data))
-    api.services.termo.fetchTermo().then((res) => console.log(res.data.data))
-  }, [])
-
   return (
-    <div className={'container-fluid '}>
-      <div style={{ height: '250px', width: '1000px' }}>
-        <DeformationTable dataSource={mackData} />
-        <TermoTable dataSource={mockThermo} />
+    <div className={'container-fluid'}>
+      <div className={'m-5 d-flex flex-column'}>
+        <div className={'d-flex flex-column mb-4'}>
+          <h4 className={'mb-4'}>Фильтр по дате</h4>
+          <DateFilter />
+        </div>
+        <div style={{ height: '250px' }}>
+          <FetchAndRenderDeformationData />
+        </div>
+      </div>
+
+      <hr />
+
+      <div className={'m-5'} style={{ height: '250px' }}>
+        <FetchAndRenderTermoData />
       </div>
     </div>
   )
